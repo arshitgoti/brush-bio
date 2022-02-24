@@ -1,0 +1,5 @@
+[09-Feb-2022 07:23:32 UTC] PHP Fatal error:  Cannot use Auth as Auth because the name is already in use in /home/k95ehvyw2f5n/public_html/app/Http/Controllers/Auth/RegisterController.php on line 21
+[09-Feb-2022 07:23:35 UTC] PHP Fatal error:  Cannot use Auth as Auth because the name is already in use in /home/k95ehvyw2f5n/public_html/app/Http/Controllers/Auth/RegisterController.php on line 21
+[09-Feb-2022 07:23:40 UTC] PHP Fatal error:  Cannot use Auth as Auth because the name is already in use in /home/k95ehvyw2f5n/public_html/app/Http/Controllers/Auth/RegisterController.php on line 21
+[09-Feb-2022 07:23:51 UTC] PHP Fatal error:  Cannot use Auth as Auth because the name is already in use in /home/k95ehvyw2f5n/public_html/app/Http/Controllers/Auth/RegisterController.php on line 21
+[09-Feb-2022 07:24:09 UTC] PHP Fatal error:  Cannot use Auth as Auth because the name is already in use in /home/k95ehvyw2f5n/public_html/app/Http/Controllers/Auth/RegisterController.php on line 21

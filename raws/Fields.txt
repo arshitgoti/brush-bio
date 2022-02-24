@@ -1,0 +1,113 @@
+Signup Using Email
+-Name
+-Email
+-Password
+Signup Using Facebook
+-Facebook
+Login
+-Email
+-Password
+Forgot Password
+-Email
+
+List of fields for Profile Management:
+
+1) Website
+-URL
+
+2) Profile Image
+-Image upload
+
+3) Contact Card
+Personal Information
+-Profile Image
+-First Name
+-Last Name
+-Company
+-Position
+-Birth Date
+Phone
+-Home Phone
+-Work Phone
+-Cell Phone
+-Fax
+Web
+-Email
+-Work Email
+-Website
+Home Address
+-Street
+-City
+-State
+-Country
+-Postal Code
+Work Address
+-Street
+-City
+-State
+-Country
+-Postal Code
+Note
+-Note
+
+4) Portfolio URLs
+-Title
+-URL
+Note: User can add multiple items in this section
+
+5) Social URLs
+-Facebook URL
+-Twitter URL
+-Linnkedin URL
+-Instagram URL
+-Youtube URL
+-Behance URL
+-Snapchat URL
+-Opensea URL
+-Knownorigin URL
+
+6) Call
+-Phone Number
+
+7) Whatsapp
+-Whatsapp Number
+-Message
+
+8) SMS
+-Phone Number
+-Message
+
+9) Email
+-Email
+
+
+
+== Contact Card(.vcf) file format ==
+
+BEGIN:VCARD
+VERSION:3.0
+FN;CHARSET=UTF-8:Keyur Patel
+N;CHARSET=UTF-8:Patel;Keyur;;;
+BDAY:19900822
+EMAIL;CHARSET=UTF-8;type=HOME,INTERNET:xyz@gmail.com
+EMAIL;CHARSET=UTF-8;type=WORK,INTERNET:xyz@website.com
+PHOTO;ENCODING=b;TYPE=JPEG:IMAGEDATA..
+TEL;TYPE=CELL:7777777777
+TEL;TYPE=HOME,VOICE:9999999999
+TEL;TYPE=WORK,VOICE:8888888888
+TEL;TYPE=WORK,FAX:4565456555
+ADR;CHARSET=UTF-8;TYPE=HOME:;;12;Ahmedabad;Gujarat;380001;India
+ADR;CHARSET=UTF-8;TYPE=WORK:;;15;Surat;Gujarat;390001;India
+ROLE;CHARSET=UTF-8:Developer
+ORG;CHARSET=UTF-8:XYZ PVT LTD
+URL;CHARSET=UTF-8:www.xyz.com
+NOTE;CHARSET=UTF-8:this is short notes description
+REV:2021-08-07T18:15:47.309Z
+END:VCARD
+_______________________________________
+
+Similar Example Available at below website for reference:
+
+https://app.v1ce.co.uk/
+User : bhalodiya_mohit@ymail.com
+Pass : mohit123456
