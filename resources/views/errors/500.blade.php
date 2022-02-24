@@ -18,21 +18,19 @@ body{
     right: auto;
     left: -100px;
     top: 30px;
-    background-image: url(images/top-left-spot.png);
+    background-image: url(../images/top-left-spot.png);
     width: 208px;
     height: 335px;
-    z-index: -20;
 }
 
 .notfound-page::after{
-    background-image: url(images/bottom-right-spot.png);
+    background-image: url(../images/bottom-right-spot.png);
     right: 0;
     width: 266px;
     height: 535px;
     left: auto;
     top: auto;
     bottom: 30px;
-    z-index: -25;
 }
 
 .notfound-page .text{
@@ -54,14 +52,13 @@ body{
     font-family: 'Poppins', sans-serif;
     color: #666666;
     margin: 0;
-    z-index: 1;
 }
 </style>
 
 
 <div class="notfound-page">
     <div class="text">
-        <h2>404</h2>
-        <p>OOPS! NOTHING WAS FOUND</p>
+        <h2>500</h2>
+        <p>OOPS! SERVER ERROR</p>
     </div>
 </div>
