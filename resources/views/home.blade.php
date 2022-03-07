@@ -179,6 +179,10 @@
 
                         <a href="https://www.facebook.com/{{$socialUrls->facebook}}" target="_blank" class="facebook-icon"></a>
                     @endif
+                    {{-- @if ($socialUrls->messenger != '' )
+
+                    <a href="https://www.facebook.com/{{$socialUrls->messenger}}" target="_blank" class="messenger-icon"></a>
+                 @endif --}}
 
                     @if ($socialUrls->twitter != ''  && $socialUrls->tw_l==$i)
                         <a href="https://twitter.com/{{$socialUrls->twitter}}" target="_blank" class="twitter-link"></a>
@@ -255,44 +259,48 @@
                     </div>
                 @endif
 
-                <div class="about-social">
+                <div class="about-social ">
                     @if ($socialUrls)
                      @for($j=$i;$j<=$socialUrls->max_val;$j++)
                         @if ($socialUrls->facebook != '' && !$socialUrls->facebook_is_featured && $socialUrls->fb_l==$j)
 
-                            <a href="https://www.facebook.com/{{$socialUrls->facebook}}" target="_blank" class="facebook-icon"></a>
+                            <a href="https://www.facebook.com/{{$socialUrls->facebook}}" target="_blank" class="social-tag facebook-icon"></a>
+                        @endif
+                        @if ($socialUrls->messenger != '' && 11 ==$j)
+
+                            <a href="http://m.me/{{$socialUrls->messenger}}" target="_blank" class="social-tag messenger-icon"></a>
                         @endif
 
                         @if ($socialUrls->twitter != '' && !$socialUrls->twitter_is_featured && $socialUrls->tw_l==$j)
-                            <a href="https://twitter.com/{{$socialUrls->twitter}}" target="_blank" class="twitter-link"></a>
+                            <a href="https://twitter.com/{{$socialUrls->twitter}}" target="_blank" class="social-tag twitter-link"></a>
                         @endif
 
                         @if ($socialUrls->linkedin != '' && !$socialUrls->linkedin_is_featured && $socialUrls->ln_l==$j)
-                            <a href="https://www.linkedin.com/in/{{$socialUrls->linkedin}}" target="_blank" class="linkedin-icon"></a>
+                            <a href="https://www.linkedin.com/in/{{$socialUrls->linkedin}}" target="_blank" class="social-tag linkedin-icon"></a>
                         @endif
 
                         @if ($socialUrls->instagram != '' && !$socialUrls->instagram_is_featured && $socialUrls->in_l==$j)
-                            <a href="https://www.instagram.com/{{$socialUrls->instagram}}" target="_blank" class="instgram-link"></a>
+                            <a href="https://www.instagram.com/{{$socialUrls->instagram}}" target="_blank" class="social-tag instgram-link"></a>
                         @endif
 
                         @if ($socialUrls->youtube != '' && !$socialUrls->youtube_is_featured && $socialUrls->yu_l==$j)
-                            <a href="https://www.youtube.com/channel/{{$socialUrls->youtube}}" target="_blank" class="youtube-link"></a>
+                            <a href="https://www.youtube.com/channel/{{$socialUrls->youtube}}" target="_blank" class="social-tag youtube-link"></a>
                         @endif
 
                         @if ($socialUrls->behance != '' && !$socialUrls->behance_is_featured && $socialUrls->be_l==$j)
-                            <a href="https://www.behance.net/{{$socialUrls->behance}}" target="_blank" class="be-icon"></a>
+                            <a href="https://www.behance.net/{{$socialUrls->behance}}" target="_blank" class="social-tag be-icon"></a>
                         @endif
 
                         @if ($socialUrls->whatsapp != '' && !$socialUrls->whatsapp_is_featured && $socialUrls->wt_l==$j)
-                            <a href="https://wa.me/{{$socialUrls->whatsapp}}" target="_blank" class="whatsapp-link"></a>
+                            <a href="https://wa.me/{{$socialUrls->whatsapp}}" target="_blank" class="social-tag whatsapp-link"></a>
                         @endif
 
                         @if ($socialUrls->snapchat != '' && !$socialUrls->snapchat_is_featured && $socialUrls->fb_l==$j)
-                            <!-- <a href="{{$socialUrls->snapchat}}" target="_blank" class="snapchat-link"></a> -->
+                            <!-- <a href="{{$socialUrls->snapchat}}" target="_blank" class="social-tag snapchat-link"></a> -->
                         @endif
 
                         @if ($socialUrls->skype != '' && !$socialUrls->skype_is_featured && $socialUrls->skp_l==$j)
-                            <a href="skype:{{$socialUrls->skype}}?chat" target="_blank" class="skype-link"></a>
+                            <a href="skype:{{$socialUrls->skype}}?chat" target="_blank" class="social-tag skype-link"></a>
                         @endif
                        @endfor
                     @endif

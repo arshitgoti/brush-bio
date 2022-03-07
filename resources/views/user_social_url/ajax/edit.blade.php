@@ -32,6 +32,28 @@
             </div>
         </div>
         </li>
+        @elseif($user_social_url->msng_l==$i)
+        <li>
+            <div class="row">
+                <div class="form-group col-12">
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text" id="basic-addon1"><i class="fas fa-align-justify my-handle"></i></span>
+                        </div>
+                        <div class="input-group-prepend">
+                          <span class="input-group-text" id="basic-addon1"><i class="fab fa-facebook-messenger"></i></span>
+                        </div>
+                        <input type="hidden" id="liposition" name="msng_l" value="{{$i}}">
+                        <input type="text" value="{{$user_social_url->messenger}}" class="form-control" name="messenger" aria-label="user_messenger_url" aria-describedby="user_messenger_url" placeholder="enter username only">
+                        <span class="error_input messenger_error text-danger"></span>
+                    </div>
+                    {{-- <div class="form-inline form-group">
+                        <label for="facebook_is_featured" class="mr-2">Featured : </label>
+                        <input type="checkbox" class="featured_url" placeholder="enter username only" {{$user_social_url->facebook_is_featured ? 'checked': ''}} name="facebook_is_featured" id="facebook_is_featured" value="1" />
+                    </div> --}}
+                </div>
+            </div>
+            </li>
         @elseif($user_social_url->in_l==$i)
       <li >
 

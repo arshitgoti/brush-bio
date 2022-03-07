@@ -14,10 +14,11 @@ class UserSocialUrlController extends Controller
     }
 
     public function store(Request $request)
-    { 
+    {
         $user_social_url = new UserSocialUrl();
         $user_social_url->user_id = Auth::user()->id;
         $user_social_url->facebook = $request->facebook;
+        $user_social_url->messenger = $request->messenger;
         $user_social_url->twitter = $request->twitter;
         $user_social_url->linkedin = $request->linkedin;
         $user_social_url->instagram = $request->instagram;
@@ -39,8 +40,10 @@ class UserSocialUrlController extends Controller
         $user_social_url->skp_l = $request->skp_l ? $request->skp_l : 7;
         $user_social_url->skp_l = $request->skp_l ? $request->open_l : 8;
         $user_social_url->skp_l = $request->skp_l ? $request->known_l : 9;
+        $user_social_url->msng_l = $request->msng_l ? $request->msng_l : 11;
 
         $user_social_url->facebook_is_featured = $request->has('facebook_is_featured') ? 1 : 0;
+        $user_social_url->messenger_is_featured = $request->has('messenger_is_featured') ? 1 : 0;
         $user_social_url->twitter_is_featured = $request->has('twitter_is_featured') ? 1 : 0;
         $user_social_url->linkedin_is_featured = $request->has('linkedin_is_featured') ? 1 : 0;
         $user_social_url->instagram_is_featured = $request->has('instagram_is_featured') ? 1 : 0;
@@ -57,17 +60,18 @@ class UserSocialUrlController extends Controller
     public function edit($id)
     {
         $user_social_url = UserSocialUrl::find($id);
-        $user_social_url->max_val=max(array($user_social_url->fb_l,$user_social_url->tw_l,$user_social_url->in_l,$user_social_url->ln_l,$user_social_url->yu_l,$user_social_url->be_l,$user_social_url->wt_l,$user_social_url->skp_l,$user_social_url->known_l,$user_social_url->open_l));
-        $user_social_url->min_val=min(array($user_social_url->fb_l,$user_social_url->tw_l,$user_social_url->in_l,$user_social_url->ln_l,$user_social_url->yu_l,$user_social_url->be_l,$user_social_url->wt_l,$user_social_url->skp_l));
+        $user_social_url->max_val=max(array($user_social_url->fb_l,$user_social_url->msng_l,$user_social_url->tw_l,$user_social_url->in_l,$user_social_url->ln_l,$user_social_url->yu_l,$user_social_url->be_l,$user_social_url->wt_l,$user_social_url->skp_l,$user_social_url->known_l,$user_social_url->open_l));
+        $user_social_url->min_val=min(array($user_social_url->fb_l,$user_social_url->msng_l,$user_social_url->tw_l,$user_social_url->in_l,$user_social_url->ln_l,$user_social_url->yu_l,$user_social_url->be_l,$user_social_url->wt_l,$user_social_url->skp_l));
         return view('user_social_url.ajax.edit', compact('user_social_url'));
     }
 
     public function update(Request $request, $id)
-    {  
+    {
         $user_social_url = UserSocialUrl::find($id);
         $delete = true;
         if (
             $request->filled('facebook') ||
+            $request->filled('messenger') ||
             $request->filled('twitter') ||
             $request->filled('linkedin') ||
             $request->filled('instagram') ||
@@ -86,6 +90,7 @@ class UserSocialUrlController extends Controller
 
         $user_social_url->user_id = Auth::user()->id;
         $user_social_url->facebook = $request->facebook;
+        $user_social_url->messenger = $request->messenger;
         $user_social_url->twitter = $request->twitter;
         $user_social_url->linkedin = $request->linkedin;
         $user_social_url->instagram = $request->instagram;
@@ -103,9 +108,10 @@ class UserSocialUrlController extends Controller
         $user_social_url->wt_l = $request->wt_l;
         $user_social_url->be_l = $request->be_l;
         $user_social_url->skp_l = $request->skp_l;
-
+        $user_social_url->msng_l = $request->msng_l ? $request->msng_l : 11;
 
         $user_social_url->facebook_is_featured = $request->has('facebook_is_featured') ? 1 : 0;
+        $user_social_url->messenger_is_featured = $request->has('messenger_is_featured') ? 1 : 0;
         $user_social_url->twitter_is_featured = $request->has('twitter_is_featured') ? 1 : 0;
         $user_social_url->linkedin_is_featured = $request->has('linkedin_is_featured') ? 1 : 0;
         $user_social_url->instagram_is_featured = $request->has('instagram_is_featured') ? 1 : 0;

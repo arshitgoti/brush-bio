@@ -89,9 +89,10 @@ a.cmn-btn.save-contact {
 .links-btns .cmn-btn.subscribe-btn {background-color: #e5aa9c; color: #fff; border-color: #e5aa9c; }
 .bio-part {padding: 0px 14px 14px 14px;border-bottom: #808080 1px solid;}
 .tabbing-cont .tab-title {font-family: 'cormorant_garamondregular'; font-size: 20px; margin-bottom: 5px; display: inline-block; }
-.about-social {display: flex; flex-flow: row wrap; flex-direction: column; margin-top: 10px; padding-left: 10px; }
-.about-social a {width: 44px; height: 44px; background-size: 100% 100%; background-repeat: no-repeat; margin: 8px 0; display: inline-block; clear: both; }
+.about-social {display: flex; flex-flow: row wrap;  margin-top: 10px; padding-left: 10px; }
+.about-social a {width: 44px; height: 44px; background-size: 100% 100%; background-repeat: no-repeat; margin: 8px 0; display: inline-block; clear: both; margin-right: 10px; }
 .facebook-icon { background-image: url(../images/facebook-icon.png); }
+.messenger-icon { background-image: url(../images/messenger-icon.png); }
 .be-icon { background-image: url(../images/be-icon.png); }
 .linkedin-icon { background-image: url(../images/linkedin-icon.png); }
 

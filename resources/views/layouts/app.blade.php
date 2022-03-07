@@ -26,12 +26,12 @@
         href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.css"
       />
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
-<!--     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
      <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js" defer></script>
      <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/jquery.ui.widget@1.10.3/jquery.ui.widget.js"></script>
      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.10.4/jquery.ui.mouse.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.2/jquery.ui.touch-punch.min.js"></script> -->
-    
+
   <style type="text/css">
       @media screen and (max-width: 480px) {
   #navbarDropdown {
@@ -54,16 +54,15 @@
 <body>
     <div id="app">
             @if(Auth::check() && Auth::user()->hasVerifiedEmail())
-            
-                
+
+
             @elseif(Auth::check())
-               
-                        <div class="verification-alert alert-danger text-center"> Email verification pending. To request 
-another verification link  
+
+                        <div class="verification-alert alert-danger text-center"> Email verification pending. To request another verification link
                             <form class="d-inline" method="POST" action="{{ route('verification.resend') }}">
                                 @csrf
                                 <button type="submit" class="btn btn-link p-0 m-0 align-baseline">{{ __('Click here') }}</button>
-                            </form>                            
+                            </form>
                         </div>
             @endif
          @auth
@@ -92,7 +91,7 @@ another verification link
                                     </form>
                                     </div>
                                 </div>
-                
+
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                         <span class="navbar-toggler-icon"></span>
                     </button>
@@ -114,7 +113,7 @@ another verification link
                                 <div class="nav-link">
                                     <b>My Link:</b> <a target="_blank" id="mylink" href="{{route('user.me', Auth::user()->slug)}}">brush.bio/{{Auth::user()->slug}}</a>
                                         <!-- {{route('user.me', Auth::user()->slug)}}-->
-                                        
+
                                     <img src="{{asset('/images/copy.png')}}" onclick="ShareFunction()" width="30" height="30" style="cursor:pointer;" />
                                     {{-- target="_blank" href="https://chart.googleapis.com/chart?chs=500x500&cht=qr&chl={{route('user.me', Auth::user()->slug)}}&choe=UTF-8" --}}
                                     <a role="button" data-toggle="modal" data-target="#exampleModalCenter">
@@ -128,11 +127,11 @@ another verification link
                 </div>
             </div>
         </nav>
-			
-		
-		
+
+
+
         <main class="py-4">
-		
+
 
             @yield('content')
         </main>
@@ -174,7 +173,7 @@ another verification link
     @include('includes.loader')
     @include('includes.flash')
     <!-- <div class="modal-body" >
-      
+
         <p class="text-muted">Add links to your portfolio, interviews, news articles or press releases, etc. Be creative. What do you want your potential buyers to see?
             </p>
         <label for="user-website" class="col-form-label">Your Links:</label>
@@ -188,18 +187,18 @@ another verification link
                         <div class="col">
                             <div class="input-group">
                                 <div class="input-group-prepend">
-                                <span class="input-group-text"><i class="fas fa-arrows-alt"></i></span>                                   
+                                <span class="input-group-text"><i class="fas fa-arrows-alt"></i></span>
                                 </div>
                                 <input type="text" class="form-control" placeholder="Enter Title" aria-label="Enter Url" aria-describedby="basic-addon2" name="portfolio_url[title][]" maxlength="35" required>
                                 <input type="text" class="form-control" placeholder="yourwebsite.com" aria-label="Enter Url" aria-describedby="basic-addon2" name="portfolio_url[url][]" required>
                                 <div class="input-group-append">
                                 <button class="btn btn-danger removePortfolioUrl" type="button"><i class="fas fa-trash"></i></button>
-                                
+
                             </div>
                             </div>
-                             
+
                         </div>
-                        
+
                     </div>
                    {{-- <i class="fas fa-arrows-alt"></i>
                     <div class="input-group mb-3">
@@ -222,8 +221,8 @@ another verification link
           </li>
           </ul>
         </div>
-        
-       
+
+
         <div class="row">
             <div class="col-md-12">
                 <div class="float-right">
@@ -239,7 +238,7 @@ another verification link
 
 
 <!-- <script src="https://raw.github.com/furf/jquery-ui-touch-punch/master/jquery.ui.touch-punch.min.js"></script>  -->
-   
+
 
 
     <script type="text/javascript">
@@ -257,13 +256,13 @@ another verification link
                 $("li").each(function (index) {
                      // alert(index);
                      $(this).find("#liposition").val(index);
-                        
+
                     });
                 // $("#sortable").sortable({
                 //   cursor: 'move',
                 // axis: 'y',
                 // dropOnEmpty: false,
-               
+
                 // start: function (e, ui) {
                 //     ui.item.addClass("selected");
                 // },
@@ -272,9 +271,9 @@ another verification link
                 //     $(this).find("li").each(function (index) {
 
                 //     $(this).find("#position").val(index);
-                        
+
                 //     });
-     
+
                 // }
 
                 // });
@@ -304,10 +303,10 @@ another verification link
                         }
                     });
                 }
-            });    
+            });
         });
     </script>
-    
+
     <script src="{{ asset('js/qr.js') }}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
     <script type="text/javascript" src="{{ asset('js/select2.full.min.js') }}"></script>
@@ -326,7 +325,7 @@ another verification link
 
       /* Copy the text inside the text field */
       navigator.clipboard.writeText(copyText);
-      
+
       /* Alert the copied text */
       alert("Link Copied: " + copyText);
     }

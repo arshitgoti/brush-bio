@@ -30,7 +30,7 @@ $(document).ready(function(e){
                 // console.log(data);
                 setModal(false);
                 showToast('success', data.message);
-                
+
 
             },
             error: function (e) {
@@ -72,8 +72,8 @@ $(document).ready(function(e){
                             // alert('success');
 
                         }
-                    });                    
-                  
+                    });
+
                 }
             });
 
@@ -87,7 +87,7 @@ $(document).ready(function(e){
         var formData = new FormData(this);
         var delete_section_type = $(this).attr('id');
 
-        Swal.fire({ 
+        Swal.fire({
 		  title: 'Are you sure you want to delete this ' + delete_section_type + '?',
 		  text:'',
 		  icon:'warning',
@@ -119,17 +119,17 @@ $(document).ready(function(e){
                     complete: function(){
                         setLoader(false);
                         refreshDashboardActions();
-        
+
                         if ($('.tblGalleryList').length > 0) {
                             listUserGalleries();
                         }
-        
+
                         if ($('.tblExhibitionList').length > 0) {
                             listUserExhibition();
                         }
                     }
                 });
-                return false;  
+                return false;
 		  }
 		})
     });
@@ -138,7 +138,7 @@ $(document).ready(function(e){
         e.preventDefault();
         var val = $(this).val();
         if (val.length > 3) {
-            setLoader(true);            
+            setLoader(true);
             var fd = new FormData();
             fd.append('user_name', val);
             fd.append('_token', $('meta[name="csrf-token"]').attr("content"));
@@ -203,8 +203,8 @@ $(document).ready(function(e){
 
     $(document).on('click' , '.removePortfolioUrl', function(e){
         e.preventDefault();
-        
-        Swal.fire({ 
+
+        Swal.fire({
 		  title: 'Are you sure want delete this link?',
 		  text:'',
 		  icon:'warning',
@@ -218,9 +218,9 @@ $(document).ready(function(e){
 		       $(this).parents('.card').remove();
 		  }
 		})
-						
+
     });
-    
+
 
 
     $(document).on('click' , '.imagedownload', function(e){
@@ -270,8 +270,8 @@ $(document).ready(function(e){
 
 
 
-               // 
-  
+               //
+
     });
 
     $(document).on('click' , '.addPortfolioUrl', function(e){
@@ -282,12 +282,12 @@ $(document).ready(function(e){
         html += ' <div class="col">';
         html += '<div class="input-group">';
         html += '<div class="input-group-prepend">';
-        html += '<span class="input-group-text my-handle"><i class="fas fa-arrows-alt"></i></span>';                                   
+        html += '<span class="input-group-text my-handle"><i class="fas fa-arrows-alt"></i></span>';
         html += '</div>';
         html += '<input type="text" class="form-control" placeholder="Enter Title" aria-label="Enter Url" aria-describedby="basic-addon2" name="portfolio_url[title][]" maxlength="35" required>';
         html += '<input type="text" class="form-control" placeholder="yourwebsite.com" aria-label="Enter Url" aria-describedby="basic-addon2" name="portfolio_url[url][]" required>';
         html += '<div class="input-group-append">';
-        html += '<button class="btn btn-danger removePortfolioUrl" type="button"><i class="fas fa-trash"></i></button>';       
+        html += '<button class="btn btn-danger removePortfolioUrl" type="button"><i class="fas fa-trash"></i></button>';
         html += '</div></div></div></div>';
         html += '</div>';
         html += '</div></li>';
@@ -362,7 +362,7 @@ function editModal(url, title) {
               // $('#sortable').draggable();
               // var el = document.getElementById('sortable');
               // var el = document.getElementById('sortable');
-               Sortable.create(sortable, { /* options */ 
+               Sortable.create(sortable, { /* options */
                         swapThreshold: 1,// Enable swap plugin
                         ghostClass: 'blue-background-class', // The class applied to the hovered swap item
                         animation: 150,
@@ -373,21 +373,21 @@ function editModal(url, title) {
                     $("li").each(function (index) {
                      //alert(index);
                     $(this).find("#liposition").val(index);
-                        
+
                     });
                             }
                });
                  $("li").each(function (index) {
                      //alert(index);
                     $(this).find("#liposition").val(index);
-                        
+
                     });
-                  
+
                 // $("#sortable").sortable({
                 //   cursor: 'move',
                 // axis: 'y',
                 // dropOnEmpty: false,
-               
+
                 // start: function (e, ui) {
                 //     ui.item.addClass("selected");
                 // },
@@ -396,16 +396,16 @@ function editModal(url, title) {
                 //     $(this).find("li").each(function (index) {
 
                 //     $(this).find("#position").val(index);
-                        
+
                 //     });
-     
+
                 // }
 
                 // });
-                
+
                 // $("#sortable").sortable();
                //  var e2 = document.getElementById('sortable');
-               //   Sortable.create(e2, { /* options */ 
+               //   Sortable.create(e2, { /* options */
                //          swap: true, // Enable swap plugin
                //          swapClass: 'highlight', // The class applied to the hovered swap item
                //          animation: 150
@@ -416,7 +416,7 @@ function editModal(url, title) {
                 // cursor: 'pointer',
                 // axis: 'y',
                 // dropOnEmpty: false,
-               
+
                 // start: function (e, ui) {
                 //     ui.item.addClass("selected");
                 // },
@@ -424,15 +424,15 @@ function editModal(url, title) {
                 //     ui.item.removeClass("selected");
                 //     $(this).find("li").each(function (index) {
                 //     $(this).find("#liposition").val(index);
-                        
+
                 //     });
-     
+
                 // }
-                    
+
                 //     });
 
 
-                          
+
             }
         });
         return false;
@@ -522,7 +522,7 @@ $("#search_user_exhibition").submit(function(e){
     });
 });
  function preview_image(event)
-{  
+{
  var reader = new FileReader();
  reader.onload = function()
  {
@@ -535,7 +535,7 @@ $("#search_user_exhibition").submit(function(e){
 
 $(document).ready(function() {
 
-    
+
     var readURL = function(input) {
         if (input.files && input.files[0]) {
             var reader = new FileReader();
@@ -543,17 +543,17 @@ $(document).ready(function() {
             reader.onload = function (e) {
                 $('.profile-pic1').attr('src', e.target.result);
             }
-    
+
             reader.readAsDataURL(input.files[0]);
         }
     }
-    
+
 
     $(".file-upload").on('change', function(){
         readURL(this);
         $("form#profile_image_form").submit();
     });
-    
+
     $(".upload-button").on('click', function() {
        $(".file-upload").click();
     });

@@ -17,11 +17,12 @@ use Illuminate\Support\Facades\Validator;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Cookie;
-
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\UsersExport;
 class UserController extends Controller
 {
    public function index($slug)
-   { 
+   {
     $slug = Str::slug($slug);
     $user = User::where('slug', $slug)->first();
     if (!$user) {
@@ -36,8 +37,8 @@ class UserController extends Controller
     $socialUrls = $user->user_social_url;
     if(isset($socialUrls))
 {
-        $socialUrls->max_val=max(array($user->user_social_url->fb_l,$user->user_social_url->tw_l,$user->user_social_url->in_l,$user->user_social_url->ln_l,$user->user_social_url->yu_l,$user->user_social_url->be_l,$user->user_social_url->wt_l,$user->user_social_url->skp_l));
-        $socialUrls->min_val=min(array($user->user_social_url->fb_l,$user->user_social_url->tw_l,$user->user_social_url->in_l,$user->user_social_url->ln_l,$user->user_social_url->yu_l,$user->user_social_url->be_l,$user->user_social_url->wt_l,$user->user_social_url->skp_l));
+        $socialUrls->max_val=max(array($user->user_social_url->fb_l,$user->user_social_url->msng_l,$user->user_social_url->tw_l,$user->user_social_url->in_l,$user->user_social_url->ln_l,$user->user_social_url->yu_l,$user->user_social_url->be_l,$user->user_social_url->wt_l,$user->user_social_url->skp_l));
+        $socialUrls->min_val=min(array($user->user_social_url->fb_l,$user->user_social_url->msng_l,$user->user_social_url->tw_l,$user->user_social_url->in_l,$user->user_social_url->ln_l,$user->user_social_url->yu_l,$user->user_social_url->be_l,$user->user_social_url->wt_l,$user->user_social_url->skp_l));
 }else{
     $socialUrls=null;
 }
@@ -46,7 +47,7 @@ class UserController extends Controller
     return view('home', compact('user','socialUrls'));
 }
 public function viewProfile(Request $request)
-{ 
+{
 
       $setting=Setting::find(1);
       $minutes = $setting->is_cookies*1440;
@@ -65,7 +66,7 @@ public function viewProfile(Request $request)
     \Mail::to($user->email)->send(new \App\Mail\SendUserDetailMail($details));
     return $response;
     return back();
-  
+
 
 }
 public function saveSetting(Request $request)
@@ -77,7 +78,7 @@ public function saveSetting(Request $request)
     $row->is_mail=$request->is_mail ? 1 : 0;
     $row->save();
     return back()->with('success','Setting updated successfully!');
-    
+
 }
 public function weekMailable(Request $request)
      {
@@ -112,80 +113,104 @@ public function weekMailable(Request $request)
  public function importselected(Request $request)
  {
 
+
+
     $query = UserViewProfile::whereIn('id',$request->rowid)->get();
-if($query->count() > 0){ 
-    $delimiter = ","; 
-    $filename = "mailable-data_" . date('Y-m-d') . ".csv"; 
-     
-    // Create a file pointer 
-    $f = fopen('php://memory', 'w'); 
-     
-    // Set column headers 
-    $fields = array('ID','Email'); 
-    fputcsv($f, $fields, $delimiter); 
-     
-    // Output each row of the data, format line as csv and write to file pointer 
+if($query->count() > 0){
+    $delimiter = ",";
+    $filename = "mailable-data_" . date('Y-m-d') . ".csv";
+
+    // Create a file pointer
+    $f = fopen('php://memory', 'w');
+
+    // Set column headers
+    $fields = array('ID','Email');
+    fputcsv($f, $fields, $delimiter);
+
+    // Output each row of the data, format line as csv and write to file pointer
     foreach ($query as $key => $q) {
-    $lineData = array($key+1,$q->email); 
-        fputcsv($f, $lineData, $delimiter); 
+    $lineData = array($key+1,$q->email);
+        fputcsv($f, $lineData, $delimiter);
     }
-  
-     
-    // Move back to beginning of file 
-    fseek($f, 0); 
-     
-    // Set headers to download file rather than displayed 
-    header('Content-Type: text/csv'); 
-    header('Content-Disposition: attachment; filename="' . $filename . '";'); 
-     
-    //output all remaining data on a file pointer 
-    fpassthru($f); 
-} 
-     
+
+
+    // Move back to beginning of file
+    fseek($f, 0);
+
+    // Set headers to download file rather than displayed
+    header('Content-Type: text/csv');
+    header('Content-Disposition: attachment; filename="' . $filename . '";');
+
+    //output all remaining data on a file pointer
+    fpassthru($f);
+}
+
 
  }
 public function imagedownload()
 {
- 
-  
+
+
 }
 public function mailable()
 { $user=Auth::user();
     $setting=Setting::find(1);
+    // echo '<pre>'; print_r($user['viewprofile']->toArray()); exit;
     return view('mailable',compact('user','setting'));
 }
-public function importmailable()
+public function importmailable(request $request)
 {
-    $query = UserViewProfile::where('user_id',Auth::user()->id)->get();
- 
-if($query->count() > 0){ 
-    $delimiter = ","; 
-    $filename = "mailable-data_" . date('Y-m-d') . ".csv"; 
-     
-    // Create a file pointer 
-    $f = fopen('php://memory', 'w'); 
-     
-    // Set column headers 
-    $fields = array('ID','Email'); 
-    fputcsv($f, $fields, $delimiter); 
-     
-    // Output each row of the data, format line as csv and write to file pointer 
-    foreach ($query as $key => $q) {
-    $lineData = array($key+1,$q->email); 
-        fputcsv($f, $lineData, $delimiter); 
+    $request=$request->all();
+// dd($request);
+    if(isset($request['rowid']) && !empty($request['rowid'])){
+        if(isset($request['exportType']) && !empty($request['exportType']) && $request['exportType']=='xls'){
+            $selectedRows=$request['rowid'];
+            return Excel::download(new UsersExport($selectedRows), 'users.xlsx');
+        }else{
+            $query = UserViewProfile::whereIn('id',$request['rowid'])->get();
+        }
+    }else{
+        $query = UserViewProfile::where('user_id',Auth::user()->id)->get();
+        if(isset($request['exportType']) && !empty($request['exportType']) && $request['exportType']=='xls'){
+            $selectedRows=array();
+            foreach($query as $id) {
+                $selectedRows[]=$id['id'];
+            }
+            return Excel::download(new UsersExport($selectedRows), 'users.xlsx');
+        }
     }
-  
-     
-    // Move back to beginning of file 
-    fseek($f, 0); 
-     
-    // Set headers to download file rather than displayed 
-    header('Content-Type: text/csv'); 
-    header('Content-Disposition: attachment; filename="' . $filename . '";'); 
-     
-    //output all remaining data on a file pointer 
-    fpassthru($f); 
-} 
+
+
+    // exit;
+    // return Excel::download(new UsersExport($selectedRows), 'users.xlsx');
+if($query->count() > 0){
+    $delimiter = ",";
+    $filename = "mailable-data_" . date('Y-m-d') . ".csv";
+
+    // Create a file pointer
+    $f = fopen('php://memory', 'w');
+
+    // Set column headers
+    $fields = array('ID','Email');
+    fputcsv($f, $fields, $delimiter);
+
+    // Output each row of the data, format line as csv and write to file pointer
+    foreach ($query as $key => $q) {
+    $lineData = array($key+1,$q->email);
+        fputcsv($f, $lineData, $delimiter);
+    }
+
+
+    // Move back to beginning of file
+    fseek($f, 0);
+
+    // Set headers to download file rather than displayed
+    header('Content-Type: text/csv');
+    header('Content-Disposition: attachment; filename="' . $filename . '";');
+
+    //output all remaining data on a file pointer
+    fpassthru($f);
+}
 
 }
 
@@ -213,7 +238,7 @@ public function updateProfileImage(Request $request)
         }
         $user->save();
         return redirect()->back();
-   
+
 }
 public function dashboardAjax(Request $request)
 {
@@ -256,11 +281,11 @@ public function setNewSlug(Request $request)
     $user->country = '';
     $user->save();
     session(['new_slug'=> $slug]);
-    
+
     return redirect()->route('register');
 }
 public function about()
-{ 
+{
  return view('dashboard.about');
 }
 public function updateProfile(Request $request)
@@ -279,11 +304,11 @@ return back()->with('success', 'Profile Updated Successfully !');
 
 
 
-}  
+}
 public function deleteAccount()
 {   Auth::user()->delete();
 }
-public function updateUserDetail(Request $request) 
+public function updateUserDetail(Request $request)
 {
     $user = User::find(Auth::user()->id);
     $request->validate([
@@ -296,18 +321,18 @@ public function updateUserDetail(Request $request)
             UserBio::where('user_id',$user->id)->update([
                 'bio_content'=>$request->bio_content,
             ]);
-        }        
+        }
         $user->first_name = $request->first_name;
-        $user->last_name = $request->last_name; 
+        $user->last_name = $request->last_name;
      if($user->email!=$request->email)
      {
           $user->email = $request->email;
           $user->email_verified_at =null;
           $user->sendEmailVerificationNotification();
      }
-               
+
         $user->save();
         return back()->with('success', 'Profile Updated Successfully !');
 
-} 
+}
 }

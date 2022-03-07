@@ -138,10 +138,10 @@ class UserVcardController extends Controller
         }
         // $user->is_phone=$request->is_phone ? 'hide' : 'show';
         // $user->is_contact=$request->is_contact ? 'hide' : 'show';
-        if(isset($request->website) && !empty($request->website) && str_contains($request->website,"www.brush.bio/")){
+        // if(isset($request->website) && !empty($request->website) && str_contains($request->website,"www.brush.bio/")){
 
-            $user->slug= str_replace("www.brush.bio/","",$request->website);
-        }
+        //     // $user->slug= str_replace("www.brush.bio/","",$request->website);
+        // }
         if ($request->hasFile('profile_pic')) {
             // $file_name_original = $request->profile_pic->getClientOriginalName();
             // $file_name = pathinfo($file_name_original, PATHINFO_FILENAME);

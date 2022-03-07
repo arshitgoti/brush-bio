@@ -129,7 +129,7 @@
         <div class="col-md-12">
             <div class="form-group">
                 <label for="website" class="col-form-label">Your profile</label>
-                <input type="text" class="form-control" value="www.brush.bio/{{$user->slug}}" id="website" name="website" placeholder="yourwebsite.com">
+                <input type="text" class="form-control" value="{{$user->website}}" id="website" name="website" placeholder="yourwebsite.com">
                 <span class="error_input website_error text-danger"></span>
             </div>
         </div>
@@ -139,7 +139,7 @@
         <!--<div class="col-md-6">
             <div class="form-group">
                <label for="website" class="col-form-label">Portfolio</label>
-                <input type="text" class="form-control" value="{{$user->website}}" name="website" id="website" placeholder="yourwebsite.com">
+                <input type="text" class="form-control" value="" name="website" id="website" placeholder="yourwebsite.com">
                 <span class="error_input website_error text-danger"></span>
             </div>
         </div>-->

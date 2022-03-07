@@ -52,6 +52,7 @@ span.invalid-feedback {
                                 <button type="submit" class="btn btn-primary">
                                     {{ __('Send Password Reset Link') }}
                                 </button>
+                                <a href="{{url('login')}}" class="btn btn-info" style="color:white">Cancel</a>
                             </div>
                         </div>
                     </form>

@@ -5,7 +5,7 @@
 <link rel='stylesheet' type='text/css' media='screen' href='https://swiitch.in/digicard/public/css/front_style.css'>
 <style type="text/css">
 .col-form-label, .form-check-label, .form-control, .btn-primary, .btn-link, .card-header{
-    font-family: 'cormorant_garamondregular';    
+    font-family: 'cormorant_garamondregular';
     font-size: 19px;
 }
 span.invalid-feedback {
@@ -67,6 +67,7 @@ span.invalid-feedback {
                                 <button type="submit" class="btn btn-primary">
                                     {{ __('Reset Password') }}
                                 </button>
+                                
                             </div>
                         </div>
                     </form>

@@ -222,7 +222,7 @@ class User extends Authenticatable implements MustVerifyEmail
         if($this->is_phone=='show')
         {$this->vCard .= "TEL;TYPE=WORK,VOICE:". $this->phone_number . "\r\n";}
         // $this->vCard .= "URL;CHARSET=UTF-8:https://www.". $this->website . "\r\n";
-        $this->vCard .= "URL;CHARSET=UTF-8:". URL::to('/').'/'.$this->slug . "\r\n";
+        $this->vCard .= "URL;CHARSET=UTF-8:". $this->website . "\r\n";
 
 
 
